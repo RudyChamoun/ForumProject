@@ -1,8 +1,10 @@
 <?php
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\LikeController;
+use App\Http\Middleware\EnsureUserIsAdmin;
 use Illuminate\Support\Facades\Route;
 
 // Authentication Routes
@@ -42,4 +44,13 @@ Route::delete('/posts/{post}/like', [LikeController::class, 'unlike'])->name('po
 Route::get('profile', [AuthController::class, 'showProfile'])->name('profile.show');
 Route::put('profile', [AuthController::class, 'updateProfile'])->name('profile.update');
 Route::put('profile/password', [AuthController::class, 'changePassword'])->name('profile.password');
+
+
+//Admin Routes
+
+Route::group(['middleware' => ['auth', EnsureUserIsAdmin::class]], function () {
+    Route::post('/admin/users/{user}/deactivate', [AdminController::class, 'deactivateUser'])->name('admin.users.deactivate');
+    Route::post('/admin/posts/{post}/delete', [AdminController::class, 'deletePost'])->name('admin.posts.delete');
+    Route::post('/admin/comments/{comment}/delete', [AdminController::class, 'deleteComment'])->name('admin.comments.delete');
+});
 
