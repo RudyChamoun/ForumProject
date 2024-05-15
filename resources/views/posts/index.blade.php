@@ -54,6 +54,13 @@
                         </form>
                     @endif
                 </div>
+                <!-- Admin functionality: Deactivate User -->
+                @if(auth()->check() && auth()->user()->isAdmin())
+                    <form action="{{ route('admin.users.deactivate', $post->user->id) }}" method="POST" class="mt-2">
+                        @csrf
+                        <button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure you want to deactivate this user?');">Deactivate User</button>
+                    </form>
+                @endif
                 <!-- Display replies -->
                 <div class="replies mt-3">
                     <h6>Replies:</h6>
