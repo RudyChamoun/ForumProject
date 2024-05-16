@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory; // Importing the HasFactory trait
+use Illuminate\Foundation\Auth\User as Authenticatable; // Importing the base Authenticatable class
+use Illuminate\Notifications\Notifiable; // Importing the Notifiable trait
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable; // Using the HasFactory and Notifiable traits
 
     /**
      * The attributes that are mass assignable.
@@ -45,24 +44,24 @@ class User extends Authenticatable
         ];
     }
 
+    // Define the relationship between User and Post
     public function posts() {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class); // A User has many Posts
     }
     
+    // Define the relationship between User and Reply
     public function replies() {
-        return $this->hasMany(Reply::class);
+        return $this->hasMany(Reply::class); // A User has many Replies
     }
 
-    public function likes()
-{
-    return $this->hasMany(Like::class);
-}
+    // Define the relationship between User and Like
+    public function likes() {
+        return $this->hasMany(Like::class); // A User has many Likes
+    }
 
-     
+    // Method to check if the user is an admin
     public function isAdmin()
     {
-        return $this->is_admin;
+        return $this->is_admin; // Return if the user is an admin
     }
-
-    
 }

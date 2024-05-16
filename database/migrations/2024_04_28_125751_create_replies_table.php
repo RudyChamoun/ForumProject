@@ -1,5 +1,5 @@
 <?php
-
+//migration file to create the replies table in the database
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

@@ -1,5 +1,5 @@
 <?php
-
+//Policies file used to make sure only the owner of the post and the admin can update or delete the post
 namespace App\Policies;
 
 use App\Models\User;
