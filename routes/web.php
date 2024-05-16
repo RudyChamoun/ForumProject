@@ -1,9 +1,11 @@
 <?php
+//importing all the Contorllers that are going to be invoked in the specified routes
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\LikeController;
+//importing manually the middleware and applying it manually because of an issue with the Kernel.php setup
 use App\Http\Middleware\EnsureUserIsAdmin;
 use Illuminate\Support\Facades\Route;
 
